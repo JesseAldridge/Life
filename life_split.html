@@ -13,16 +13,16 @@ function draw_board() {
     var canvas = document.getElementById('canvas')
     var context = canvas.getContext('2d')
 
-    context.fillStyle = 'white'
-    context.fillRect(0,0, rect_size * num_cols / 2, rect_size * num_rows)
     context.fillStyle = 'black'
+    context.fillRect(0,0, rect_size * num_cols / 2, rect_size * num_rows / 2)
+    context.fillStyle = 'white'
     context.fillRect(rect_size * num_cols / 2, 0,
-                     rect_size * num_cols / 2, rect_size * num_rows)
+                     rect_size * num_cols / 2, rect_size * num_rows / 2)
 
     // Render with gradient on right, render plain on left.
     for(var r = 0; r < num_rows; r++)
         for(var c = 0; c < num_cols; c++) {
-            if(c >= num_cols / 2) {
+            if((c >= num_cols / 2) == (r >= num_rows / 2)) {
                 if(board[r][c] > 0) {
                     var hex_str = Math.floor(board[r][c] * 255).toString(16)
                     if(hex_str.length == 1)  hex_str = '0' + hex_str
